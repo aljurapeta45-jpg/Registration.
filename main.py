@@ -1,14 +1,21 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from werkzeug.security import generate_password_hash  # Added for hashing
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'Apeta'
+app.secret_key = 'Clave'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/user_registration'
+# DATABASE CONFIG FOR RAILWAY ONLY
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f"mysql+pymysql://{os.environ['MYSQLUSER']}:"
+    f"{os.environ['MYSQLPASSWORD']}@"
+    f"{os.environ['MYSQLHOST']}:"
+    f"{os.environ['MYSQLPORT']}/"
+    f"{os.environ['MYSQLDATABASE']}"
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
 
 # MODEL
