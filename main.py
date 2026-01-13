@@ -5,7 +5,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'Clave'
+app.secret_key = 'Apeta'
 
 # DATABASE CONFIG FOR RAILWAY ONLY
 app.config['SQLALCHEMY_DATABASE_URI'] = (
